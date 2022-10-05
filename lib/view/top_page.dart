@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_image_search_app/common/http_client/http_client.dart';
+import 'package:flutter_image_search_app/common/searchbar/searchbar.dart';
 import 'package:flutter_image_search_app/model/bing_image_search/bing_image_search.dart';
 import 'package:flutter_image_search_app/view/image_page.dart';
 import 'package:flutter_image_search_app/common/routers/routers.dart';
@@ -29,9 +30,7 @@ class TopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Routers routers = Routers.shared;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("TopPage"),
-      ),
+      appBar: const SearchBar(),
       body: FutureBuilder(
         future: getBingImagesSearch(),
         builder: (context, snapshot) {
