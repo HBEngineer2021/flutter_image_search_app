@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_image_search_app/common/http_client/http_client.dart';
 import 'package:flutter_image_search_app/model/bing_image_search/bing_image_search.dart';
-import 'package:flutter_image_search_app/view/imagepage.dart';
+import 'package:flutter_image_search_app/view/image_page.dart';
 import 'package:flutter_image_search_app/common/routers/routers.dart';
 import 'package:flutter_image_search_app/view_model/bing_image_search_view_model/bing_image_search_view_model.dart';
 
@@ -48,16 +48,32 @@ class TopPage extends StatelessWidget {
               return SizedBox(
                 height: 200,
                 width: 200,
-                child: CachedNetworkImage(
-                  imageUrl: countentUrlOfList[i],
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(Icons.error),
-                  ),
-                  cacheManager: CacheManager(Config("image_cache",
-                      stalePeriod: const Duration(days: 1))),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    CachedNetworkImage(
+                      imageUrl: countentUrlOfList[i],
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) => const Center(
+                        child: Icon(Icons.error),
+                      ),
+                      cacheManager: CacheManager(Config("image_cache",
+                          stalePeriod: const Duration(days: 1))),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          routers.pushPages(context,
+                              ImagePage(getImageUrl: countentUrlOfList[i]));
+                        },
+                        onLongPress: () {
+                          print("OK");
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent, elevation: 0),
+                        child: null)
+                  ],
                 ),
               );
             }),

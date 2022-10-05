@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_search_app/view/toppage.dart';
+import 'package:flutter_image_search_app/view/top_page.dart';
 
 void main() {
   runApp(const MyApp());
