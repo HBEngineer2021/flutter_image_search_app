@@ -15,6 +15,7 @@ class TopPage extends StatelessWidget {
   final BingImagesSearchViewModel bingImagesSearchViewModel =
       BingImagesSearchViewModel();
 
+  List<String> menuOfList = ["Save Image", "Share"];
   List<BingImagesSearch> valueOfList = [];
   int count = 0;
   List<String> nameOfList = [];
@@ -63,11 +64,55 @@ class TopPage extends StatelessWidget {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          routers.pushPages(context,
-                              ImagePage(getImageUrl: countentUrlOfList[i]));
+                          routers.pushPages(
+                            context,
+                            ImagePage(
+                                getImageUrl: countentUrlOfList[i],
+                                getImageTitle: nameOfList[i]),
+                          );
                         },
                         onLongPress: () {
-                          print("OK");
+                          routers.pushExpandImagePages(
+                            context,
+                            Center(
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 150.0),
+                                    height: 400,
+                                    width: double.infinity,
+                                    child: CachedNetworkImage(
+                                        imageUrl: countentUrlOfList[i]),
+                                  ),
+                                  Align(
+                                    alignment: const Alignment(0.0, 1.0),
+                                    child: Container(
+                                      margin: const EdgeInsets.all(50.0),
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: menuOfList.length,
+                                        itemBuilder: ((context, index) {
+                                          return Card(
+                                            child: ListTile(
+                                              title: Text(menuOfList[index]),
+                                              onTap: () {
+                                                switch (index) {
+                                                  case 0:
+                                                    return;
+                                                  case 1:
+                                                    return;
+                                                }
+                                              },
+                                            ),
+                                          );
+                                        }),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent, elevation: 0),
