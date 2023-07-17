@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_search_app/common/routers/routers.dart';
+import 'package:flutter_image_search_app/view/search_result_page.dart';
 
 import '../../model/bing_image_search/bing_image_search.dart';
 import '../../view_model/bing_image_search_view_model/bing_image_search_view_model.dart';
@@ -19,17 +21,13 @@ class SearchBarState extends State<SearchBar> {
   final BingImagesSearchViewModel bingImagesSearchViewModel =
       BingImagesSearchViewModel();
   List<BingImagesSearch> valueOfList = [];
-
-  Future getBingImagesSearch() async {
-    valueOfList.add((await bingImagesSearchViewModel.fetchBingImagesSearch())!);
-  }
+  final Routers routers = Routers.shared;
 
   void searchAction(value) {
     setState(() {
       controller.clear();
       print(value);
-      getBingImagesSearch();
-      print(valueOfList.first.contentUrl);
+      routers.pushPages(context, SearchResultPage(keyword: value));
     });
   }
 

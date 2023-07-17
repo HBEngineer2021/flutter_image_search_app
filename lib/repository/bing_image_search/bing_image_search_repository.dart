@@ -5,4 +5,8 @@ class BingImagesSearchRepository {
   dynamic fetchBingImagesSearch() async {
     return await httpClient.fetchBingImageSearch();
   }
+
+  dynamic getBingImagesKeywordSearch(String keyword) async {
+    return await httpClient.getBingImageKeywordSearch(keyword);
+  }
 }

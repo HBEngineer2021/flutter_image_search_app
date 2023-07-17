@@ -6,4 +6,8 @@ class BingImagesSearchViewModel {
   dynamic fetchBingImagesSearch() async {
     return await bingImagesSearchRepository.fetchBingImagesSearch();
   }
+
+  dynamic getBingImagesKeywordSearch(String keyword) async {
+    return await bingImagesSearchRepository.getBingImagesKeywordSearch(keyword);
+  }
 }

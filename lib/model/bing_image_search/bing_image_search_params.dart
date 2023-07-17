@@ -31,7 +31,7 @@ extension BingImageSearchAPIHeadersExtension on BingImageSearchAPIHeaders {
       case BingImageSearchAPIHeaders.headers:
         return {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': '481aa5932bce4e1e8329706d9b37e952'
+          'Ocp-Apim-Subscription-Key': '41ec978c47784ea49c5be8b86c59c514'
         };
     }
   }
